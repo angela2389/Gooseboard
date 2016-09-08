@@ -16,7 +16,7 @@ class Player extends React.Component {
           <td>{ this.props.name } </td>
           <td>{ this.props.position } </td>
           <td>
-          <img src="http://www.quickanddirtytips.com/sites/default/files/images/4348/dice.jpg" onClick={ this.rollDice.bind(this)}/>
+          <img style={{height: "20px", width: "auto"}} src="http://www.quickanddirtytips.com/sites/default/files/images/4348/dice.jpg" onClick={ this.rollDice.bind(this)}/>
           </td>
       </tr>
       </tbody>

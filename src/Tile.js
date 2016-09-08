@@ -14,7 +14,11 @@ class Tile extends React.Component {
     return (
       <div style={style}>
         <div>{ this.props.name }</div>
-        <div style={player}>{ JSON.stringify(this.props.players) }</div>
+        {
+          this.props.players.map(function(p){
+            return <div> {p.name} </div>
+          })
+        }
       </div>
     );
   }
