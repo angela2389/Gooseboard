@@ -1,4 +1,5 @@
 import React from 'react'
+import FlatButton from 'material-ui/FlatButton'
 
 class WhoIsPlaying extends React.Component {
 
@@ -17,7 +18,8 @@ class WhoIsPlaying extends React.Component {
           <td>
           <img style={{height: "20px", width: "auto"}}
             src="http://www.quickanddirtytips.com/sites/default/files/images/4348/dice.jpg"
-            onClick={ this.roll.bind(this)}/>
+            onClick={ this.roll.bind(this)}
+          />
           </td>
       </tr>
       </tbody>

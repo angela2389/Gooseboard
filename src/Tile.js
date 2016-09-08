@@ -1,26 +1,29 @@
 import React from 'react';
+import Paper from 'material-ui/Paper'
 
 class Tile extends React.Component {
 
   render() {
     const style = {
-      width:"50px", height:"50px", border:"3px solid #34ad00",
-      margin:"5px", padding:"5px", display:"inline-block",
-      borderRadius: "25px", fontFamily: "Arial", textAlign: "center",
-      backgroundColor: "#fff8bf"
-    }
+      height: 80,
+      width: 80,
+      margin: 20,
+      padding: 5,
+      textAlign: 'center',
+      display: 'inline-block',
+      backgroundColor: '#f6ffdd'
+    };
     const player = {
       color:"#ea0000"
     }
     return (
-      <div style={style}>
+      <Paper style={style} circle={true}>
         <div>{ this.props.name }</div>
-        {
-          this.props.players.map(function(p, i){
+        {this.props.players.map(function(p, i){
             return <div key={i} style={player}> {p.name} </div>
           })
         }
-      </div>
+        </Paper>
     );
   }
 }

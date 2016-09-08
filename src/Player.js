@@ -6,7 +6,6 @@ class Player extends React.Component {
     return (
       <tr>
         <td>{ player.name } </td>
-        <td>{ player.position }</td>
         <td>{ player.lastRoll }</td>
       </tr>
     )

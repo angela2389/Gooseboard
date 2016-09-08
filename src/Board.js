@@ -2,6 +2,7 @@ import React from 'react'
 import Tile from './Tile'
 import Player from './Player'
 import WhoIsPlaying from './WhoIsPlaying'
+import RaisedButton from 'material-ui/RaisedButton'
 
 class Board extends React.Component {
   constructor() {
@@ -159,12 +160,17 @@ class Board extends React.Component {
     const { winner, whoIsPlaying, tiles, players } = this.state
     return (
       <div>
-      <h1>Gooseboard</h1>
-        <table>
+        <h1>Gooseboard</h1>
+        <RaisedButton
+        onClick={this.startGame.bind(this)}
+        label="Start Game"
+        backgroundColor="#f49905"
+        />
+        <hr/>
+        <table style={{border: '1px solid black'}}>
           <thead>
             <tr>
               <th>Name</th>
-              <th>Position</th>
               <th>Last roll</th>
             </tr>
           </thead>
@@ -172,14 +178,14 @@ class Board extends React.Component {
             { players.map(this.renderPlayer.bind(this)) }
           </tbody>
         </table>
-        <button onClick={this.startGame.bind(this)}>Start game</button>
-        <div>
-          { winner ? <div>Winner: {winner.name}</div> : null }
-        </div>
+        <br/>
+        <div>{ whoIsPlaying && !winner ? this.renderWhoIsPlaying(whoIsPlaying) : null}</div>
         <div>
             { tiles.map(this.renderTile.bind(this)) }
-            { whoIsPlaying ? this.renderWhoIsPlaying(whoIsPlaying) : null}
         </div>
+        <h3>
+          { winner ? <div>Winner: {winner.name} !!!</div> : null }
+        </h3>
       </div>
     )
   }
