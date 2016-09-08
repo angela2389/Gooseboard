@@ -8,7 +8,7 @@ class Board extends React.Component {
 
     this.state = {
       tiles: [
-        { id: 1, name: "Start", players: [] },
+        { id: 1, name: "Start", players: [{ name: "Isa", position: 1}] },
         { id: 2, name: "Two", players: [] },
         { id: 3, name: "Three", players: [] },
         { id: 4, name: "Four", players: [] },
@@ -44,18 +44,44 @@ class Board extends React.Component {
 
   onChangePosition(name, position) {
       const { players } = this.state
-      let newPlayers = players.map((player) => {
-        if (player.name === name) {
+      const player = players.find(function(p){
+        return p.name === name
+      })
+
+      let newPlayers = players.map((p) => {
+        if (p.name === name) {
           return {
             name: name,
             position: position,
           }
         }
-          return player
+          return p
       })
+
+      let newTiles = this.state.tiles.map(function(tile){
+        console.log(position +', '+ player.position)
+        if(tile.id === player.position){
+          return {
+            id: tile.id,
+            name: tile.name,
+            players: tile.players.concat([player])
+          }
+        }
+        if(tile.id === position){
+          return {
+            id: tile.id,
+            name: tile.name,
+            players: tile.players.concat([player])
+          }
+        }
+        return tile
+      })
+
       this.setState({
-        players: newPlayers
+        tiles: newTiles,
+        players: newPlayers,
       })
+
     }
 
 

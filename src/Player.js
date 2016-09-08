@@ -3,7 +3,7 @@ import React from 'react'
 class Player extends React.Component {
 
   rollDice() {
-    const newPosition = this.props.position + (1 + Math.floor(Math.random() * 3))
+    const newPosition = this.props.position + (1 + Math.floor(Math.random() * 2))
     this.props.onChange(this.props.name, newPosition);
     console.log(newPosition)
   }
