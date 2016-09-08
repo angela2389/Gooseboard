@@ -8,6 +8,7 @@ class Board extends React.Component {
 
     this.state = {
       winner: null,
+      whoseTurn: null,
       tiles: [
         { id: 1, name: "Start", players: [] },
         { id: 2, name: "Two", players: [] },
@@ -31,18 +32,34 @@ class Board extends React.Component {
         name={tile.name}
         players={tile.players}/>
     );
-    }
+  }
 
-    renderPlayer(player, index) {
-    return (
-      <Player key={ index }
-      name={player.name}
-      position={player.position}
-      finishPosition={this.state.tiles.length}
-      winner={this.state.winner}
-      onChange={this.onChangePosition.bind(this) }
-    />
-    )
+  renderPlayer(player, index) {
+  return (
+    <Player key={ index }
+    name={player.name}
+    position={player.position}
+    finishPosition={this.state.tiles.length}
+    winner={this.state.winner}
+    onChange={this.onChangePosition.bind(this) }/>)
+  }
+
+  startGame(){
+    const { tiles, players } = this.state
+    let newTiles = tiles.map(function(tile){
+      if(tile.id === 1){
+        return {
+          id: tile.id,
+          name: tile.name,
+          players: tile.players.concat(players)
+        }
+      }
+      return tile
+    })
+    this.setState({
+      tiles: newTiles,
+      whoseTurn: players[0]
+    })
   }
 
   onChangePosition(name, position) {
@@ -96,6 +113,7 @@ class Board extends React.Component {
     return (
       <div>
       <h1>Gooseboard</h1>
+        <button onClick={this.startGame.bind(this)}>Start game</button>
         <div>
           Winner: { winner ? winner.name : "Still playing..." }
         </div>

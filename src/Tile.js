@@ -6,7 +6,8 @@ class Tile extends React.Component {
     const style = {
       width:"50px", height:"50px", border:"3px solid #34ad00",
       margin:"5px", padding:"5px", display:"inline-block",
-      borderRadius: "25px", fontFamily: "Arial", textAlign: "center"
+      borderRadius: "25px", fontFamily: "Arial", textAlign: "center",
+      backgroundColor: "#fff8bf"
     }
     const player = {
       color:"#ea0000"
@@ -15,8 +16,8 @@ class Tile extends React.Component {
       <div style={style}>
         <div>{ this.props.name }</div>
         {
-          this.props.players.map(function(p){
-            return <div style={player}> {p.name} </div>
+          this.props.players.map(function(p, i){
+            return <div key={i} style={player}> {p.name} </div>
           })
         }
       </div>
