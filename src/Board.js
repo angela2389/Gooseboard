@@ -8,7 +8,7 @@ class Board extends React.Component {
 
     this.state = {
       tiles: [
-        { id: 1, name: "Start", players: [{ name: "Isa", position: 1}] },
+        { id: 1, name: "Start", players: [] },
         { id: 2, name: "Two", players: [] },
         { id: 3, name: "Three", players: [] },
         { id: 4, name: "Four", players: [] },
@@ -64,7 +64,9 @@ class Board extends React.Component {
           return {
             id: tile.id,
             name: tile.name,
-            players: tile.players.concat([player])
+            players: tile.players.filter(function(p){
+              return p.name !== player.name
+            })
           }
         }
         if(tile.id === position){
