@@ -7,6 +7,7 @@ class Board extends React.Component {
     super()
 
     this.state = {
+      winner: null,
       tiles: [
         { id: 1, name: "Start", players: [] },
         { id: 2, name: "Two", players: [] },
@@ -37,6 +38,8 @@ class Board extends React.Component {
       <Player key={ index }
       name={player.name}
       position={player.position}
+      finishPosition={this.state.tiles.length}
+      winner={this.state.winner}
       onChange={this.onChangePosition.bind(this) }
     />
     )
@@ -47,7 +50,6 @@ class Board extends React.Component {
       const player = players.find(function(p){
         return p.name === name
       })
-
       let newPlayers = players.map((p) => {
         if (p.name === name) {
           return {
@@ -82,17 +84,21 @@ class Board extends React.Component {
       this.setState({
         tiles: newTiles,
         players: newPlayers,
+        winner: position === newTiles.length ? player : null
       })
 
     }
 
 
   render() {
-    const { tiles } = this.state
+    const { tiles, winner } = this.state
 
     return (
       <div>
       <h1>Gooseboard</h1>
+        <div>
+          Winner: { winner ? winner.name : "Still playing..." }
+        </div>
         <div>
             { tiles.map(this.renderTile.bind(this)) }
             { this.state.players.map(this.renderPlayer.bind(this)) }

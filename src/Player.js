@@ -3,7 +3,12 @@ import React from 'react'
 class Player extends React.Component {
 
   rollDice() {
-    const newPosition = this.props.position + (1 + Math.floor(Math.random() * 2))
+    if (this.props.winner) {return }
+    const diceResult = (1 + Math.floor(Math.random() * 3))
+    let newPosition = this.props.position + diceResult
+      if (newPosition > this.props.finishPosition ){
+        newPosition = finishPosition
+      }
     this.props.onChange(this.props.name, newPosition);
     console.log(newPosition)
   }
